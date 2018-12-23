@@ -51,8 +51,7 @@ RUN \
 # Set up Enviornment
 RUN \
     useradd --home /app --gid root --system Rust && \
-    chown Rust:root -R /app && \
-    chown Rust:root -R /app/server
+    chown Rust:root -R /app
 
 COPY --chown=Rust:root ./server.sh /app/server.sh
 
