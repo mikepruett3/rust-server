@@ -10,6 +10,11 @@ docker run \
   --detach \
   -it \
   -e SERVERNAME="My Rust Server" \
+  -e RCON_PASS="password" \
+  -v <rust-volume>:/app/server \
+  -p 28015:28015 \
+  -p 28015:28015/udp \
+  -p 28016:28016 \
 mikepruett3/rust-server ./server.sh
 ```
 
