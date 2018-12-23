@@ -5,19 +5,17 @@ ARG LANGUAGE=en_US.UTF-8
 ARG PORT=28015
 ARG RCON_PORT=28016
 
-ENV LANGUAGE=${LANGUAGE}\
-    LC_ALL=${LANGUAGE} \
-    LANG=${LANGUAGE} \
+ENV LANG=${LANGUAGE} \
     PORT=${PORT} \
     RCON_PORT=${RCON_PORT} \
     RCON_WEB=1 \
     RCON_PASS="password" \
     SERVERNAME="My Rust Server" \
-    SEED=1 \
+    SEED=12345 \
     TICK=10 \
     SAVEINT=600 \
-    MAXPLAYERS=8 \
-    WORLDSIZE=1000
+    MAXPLAYERS=10 \
+    WORLDSIZE=4000
 
 # Building OS, and installed steamcmd
 RUN \
@@ -39,7 +37,7 @@ RUN \
         unzip \
         steamcmd && \
     apt-get clean && \
-    echo "LC_ALL=${LANGUAGE}" >> /etc/environment
+    echo "LANG=${LANGUAGE}" >> /etc/environment
 
 # Download Rust Dedicated Server via SteamCMD
 RUN \
@@ -70,4 +68,4 @@ EXPOSE ${PORT}/tcp
 EXPOSE ${RCON_PORT}/tcp
 
 # Volumes for Persistent Server Data
-#VOLUME [ "/app/Saves", "/app/Mods" ]
+VOLUME "/app/server"

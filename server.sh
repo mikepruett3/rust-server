@@ -4,8 +4,8 @@ set -euo pipefail
 
 export LD_LIBRARY_PATH=:`dirname $0`/RustDedicated_Data/Plugins/x86_64
 
-CMD="./RustDedicated \
-    +rcon.web $RCON_WEB \
+./RustDedicated \
+    +rcon.web 1 \
     +rcon.password "$RCON_PASS" \
     +rcon.port $RCON_PORT \
     +server.port $PORT \
@@ -16,6 +16,4 @@ CMD="./RustDedicated \
     +server.maxplayers $MAXPLAYERS \
     +server.worldsize $WORLDSIZE \
     +nav_disable \
-    -logfile -"
-
-exec $CMD $@
+    -logfile -
